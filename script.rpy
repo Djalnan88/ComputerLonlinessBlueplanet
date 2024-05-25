@@ -40,7 +40,7 @@ image alein_message_oldfriend2 = "alien_message_1-3-3-3.png"
 image alein_message_oldfriend3 = "alien_message-1-3-3-4.png"
 image alein_message_oldfriend4 = "alien_message_1-3-3-5.png"
 image alein_message_oldfriend5 = "alien_message_1-3-3-6.png"
-image alien_do_not_exist = "alien_do_not_exist.png"
+image alien_do_not_exist = "aliens_do_not_exist.png"
 image message_alert = "message_alert.png"
 image agent_message1 = "agent1.png"
 image agent_message2 = "agent2.png"
@@ -48,6 +48,9 @@ image agent_message3 = "agent3.png"
 image agent_message4 = "agent4.png"
 image agent_message5 = "agent5.png"
 image agent_message6 = "agent6.png"
+image breakwindow = "breakwindow.png"
+image marsattack = "marsattack.png"
+image pizzaguy = "pizzaguy.png"
 
 define n = Character(color = "#FFFFFF")
 
@@ -217,9 +220,10 @@ label news:
     python:
         while(True):
             input = renpy.input(">> ")
-            if "끝" in input or "홈" in input or "돌아" in input or "바탕화면" in input:
-                moonsaying = "그 사람은 뭐였지?"
+            if "빅상민" in input:
+                moonsaying = "이 사람은 뭐지?"
                 break
+            if "돌아" in input or "뒤로" in input or "홈" in input "나" in input:
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
@@ -346,7 +350,7 @@ label chat:
         chatchoice = 0
         while(True):
             input = renpy.input(">> ")
-            if "누가" in input or "누군" in input or "알려" in input:
+            if "누가" in input or "누군" in input or "알려" in input or "빅상민" in input "canyouhearmefellas" in input:
                 moonsaying = "사실대로 말하자"
                 chatchoice = 1
                 break
@@ -466,6 +470,7 @@ label chat:
                 ypos 30
             $ moonsaying = "뭐...라고...!?"
             n "아무 키나 클릭하여 진행하세요"
+            hide alien_message_2_2_angry2
             jump destroyed
     elif chatchoice == 3:
         show alien_message_3_1:
@@ -498,6 +503,11 @@ label chat:
                     moonsaying = "그렇게는 못해"
         hide alien_message_3_3
         if hearchoice == 1:
+            show alien_message_oldfriend0:
+                xpos 55
+                ypos 30
+            $ moonsaying = "갑자기 떠난 친구라"
+            n "아무 키나 클릭하여 진행하세요"
             show alein_message_oldfriend1:
                 xpos 55
                 ypos 30
@@ -539,6 +549,7 @@ label chat:
                 ypos 30
             $ moonsaying = "뭐...라고...!?"
             n "아무 키나 클릭하여 진행하세요"
+            hide alien_message_hack_bad2
             jump destroyed
     jump secretagent
     return
@@ -607,7 +618,7 @@ label secretagent:
     show agent_message3:
         xpos 55
         ypos 30
-    $ moonsaying = "위험한 곳이라...\n난 현실보다 더 익숙하지만 말이야"
+    $ moonsaying = "위험한 곳이라...\n난 현실보다 더 익숙하지만 \n말이야"
     n "아무 키나 클릭하여 진행하세요"
     hide agent_message3
     show agent_message4:
@@ -651,15 +662,90 @@ label secretagent:
                 moonsaying = "그렇게는 못해"
             count += 1
     if kdn == 1:
+        hide background
         jump kidnap
         return
+    n "당신은 vpn을 켰다. 왠지 안전해진 기분이 든다"
+    $ moonsaying = "슬슬 10분이..."
+    n "*쿠웅*"
+    $ moonsaying = "뭐야?"
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if ("창문" in input or "커튼" in input) and ("열" in input or "연" in input):
+                moonsaying = "창문을 열어보자"
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "지금 그럴 때가 아니야"
+            else:
+                moonsaying = "그렇게는 못해"
+    n "창문을 열자 밖에는 커다란 UFO가 떠있다."
 
     return
 
 label destroyed:
-    n "아직 안만듬 ㅅㄱ"
+    show basic:
+        xpos 55
+        ypos 30
+    $ moonsaying = "무슨 일이야?"
+    n "*콰앙*"
+    n "창문 밖에서 갑자기 폭발음이 들렸습니다"
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if ("창" in input or "커" in input or "커" in input) and ("보" in input or "열" in input or "연" in input):
+                moonsaying = "창문을 열어보자"
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "지금 그럴 때가 아니야"
+            else:
+                moonsaying = "창 밖의 소리가 신경쓰이는걸"
+    hide characterbox
+    hide character
+    hide saying
+    hide screen sayinglog
+    hide screen mainsaying
+    hide background
+    scene marsattack
+
+    n "창문을 열어보니 하늘을 뒤덮은 UFO와 폐허가 된 도시가 보입니다."
+    n "외계인들의 침공으로 인류는 멸망했습니다."
+    n "BAD END \n드디어 방 밖으로"
     return
 
 label kidnap:
-    n "아직 안만듬 ㅅㄱ"
+    show basic:
+        xpos 55
+        ypos 30
+    $ moonsaying = "피자가 왔나?"
+    n "*띵동*"
+    n "\"페퍼로니 피자 배달왔습니다\""
+    menu :
+        "문을 연다." :
+            $ moonsaying = "배고팠는데 잘됐네"
+            n "아무 키나 클릭하여 진행하세요"
+            hide characterbox
+            hide character
+            hide saying
+            hide screen sayinglog
+            hide screen mainsaying
+            hide basic
+            scene pizzaguy
+            n "\"ㅎㅇ?\""
+        "문을 열지 않는다." :
+            $ moonsaying = "난 파인애플 피자를 \n시켰는데..?"
+            n "아무 키나 클릭하여 진행하세요"
+            hide characterbox
+            hide character
+            hide saying
+            hide screen sayinglog
+            hide screen mainsaying
+            hide basic
+            scene kidnap
+            n "*와장창*"
+
+        n "당신은 랩틸리언에게 납치당했습니다."
+        n "그 뒤로 당신의 모습을 본 사람은 아무도 없었습니다."
+        n "BAD END \n영원히 방 안에"
+            
     return
