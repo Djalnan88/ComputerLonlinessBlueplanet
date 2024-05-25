@@ -32,6 +32,14 @@ image alien_message_2_2_angry2 = "alien_message_2-2-angry2.png"
 image alien_message_3_1 = "alien_message_3-1.png"
 image alien_message_3_2 = "alien_message_3-2.png"
 image alien_message_3_3 = "alien_message_3-3.png"
+image alien_message_hack_bad1 = "alien_message_1-4.png"
+image alien_message_hack_bad2 = "alien_message_1-5badend.png"
+image alein_message_oldfriend1 = "alien_message_1-3-2.png"
+image alein_message_oldfriend2 = "alien_message_1-3-3-3.png"
+image alein_message_oldfriend3 = "alien_message-1-3-3-4.png"
+image alein_message_oldfriend4 = "alien_message_1-3-3-5.png"
+image alein_message_oldfriend5 = "alien_message_1-3-3-6.png"
+
 
 define n = Character(color = "#FFFFFF")
 
@@ -401,6 +409,37 @@ label chat:
                 ypos 30
             n "아무 키나 클릭하여 진행하세요"
             $ moonsaying = "오랜 친구라\n어릴 적 친구가 생각나네"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alien_massage_2_3
+            show alein_message_oldfriend1:
+                xpos 55
+                ypos 30
+            $ moonsaying = "나도 그런 친구가 있었지"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend1
+            show alein_message_oldfriend2:
+                xpos 55
+                ypos 30
+            $ moonsaying = "좋아\n찾는걸 도와주자"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend2
+            show alein_message_oldfriend3:
+                xpos 55
+                ypos 30
+            $ moonsaying = "지금?\n어디에서 보자는 거지?"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend3
+            show alein_message_oldfriend4:
+                xpos 55
+                ypos 30
+            $ moonsaying = "해킹이라니..."
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend4
+            show alein_message_oldfriend5:
+                xpos 55
+                ypos 30
+            $ moonsaying = "조금 무서운데\n뭐 별일이야 없겠지"
+            n "아무 키나 클릭하여 진행하세요"
         elif hearchoice == 2:
             show alien_massage_2_2_angry1:
                 xpos 55
@@ -444,6 +483,51 @@ label chat:
                 else:
                     moonsaying = "그렇게는 못해"
         hide alien_message_3_3
+        if hearchoice == 1:
+            show alein_message_oldfriend1:
+                xpos 55
+                ypos 30
+            $ moonsaying = "나도 그런 친구가 있었지"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend1
+            show alein_message_oldfriend2:
+                xpos 55
+                ypos 30
+            $ moonsaying = "좋아\n찾는걸 도와주자"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend2
+            show alein_message_oldfriend3:
+                xpos 55
+                ypos 30
+            $ moonsaying = "지금?\n어디에서 보자는 거지?"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend3
+            show alein_message_oldfriend4:
+                xpos 55
+                ypos 30
+            $ moonsaying = "해킹이라니..."
+            n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend4
+            show alein_message_oldfriend5:
+                xpos 55
+                ypos 30
+            $ moonsaying = "조금 무서운데\n뭐 별일이야 없겠지"
+            n "아무 키나 클릭하여 진행하세요"
+        elif hearchoice == 2:
+            show alien_message_hack_bad1:
+                xpos 55
+                ypos 30
+            $ moonsaying = "어...\n혹시 화났나?"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alien_message_hack_bad1
+            show alien_message_hack_bad2:
+                xpos 55
+                ypos 30
+            $ moonsaying = "뭐...라고...!?"
+            n "아무 키나 클릭하여 진행하세요"
+            jump destroyed
+    
+    return
 
 label destroyed:
     n "아직 안만듬 ㅅㄱ"
