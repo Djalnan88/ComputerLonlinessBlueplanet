@@ -20,14 +20,14 @@ image message6 = "message6.png"
 image lovechat_background = "lovechat_background.png"
 image alien_message_basic = "alien_message_basic.png"
 image alien_message_basic2 = "alien_message_basic2.png"
-image alien_massage_1_1 = "alien_massage_1.png"
-image alien_massage_1_2 = "alien_massage_1-1.png"
-image alien_massage_1_3 = "alien_massage_1-2.png"
-image alien_massage_1_4 = "alien_massage_1-3.png"
-image alien_massage_2_1 = "alien_massage_2-1.png"
-image alien_massage_2_2 = "alien_massage_2-2.png"
-image alien_massage_2_3 = "alien_massage_2-3.png"
-image alien_massage_2_2_angry1 = "alien_massage_2-2-angry1.png"
+image alien_massage_1_1 = "alien_message_1.png"
+image alien_massage_1_2 = "alien_message_1-1.png"
+image alien_massage_1_3 = "alien_message_1-2.png"
+image alien_massage_1_4 = "alien_message_1-3.png"
+image alien_massage_2_1 = "alien_message_2-1.png"
+image alien_massage_2_2 = "alien_message_2-2.png"
+image alien_massage_2_3 = "alien_message_2-3.png"
+image alien_massage_2_2_angry1 = "alien_message_2-2-angry1.png"
 image alien_message_2_2_angry2 = "alien_message_2-2-angry2.png"
 image alien_message_3_1 = "alien_message_3-1.png"
 image alien_message_3_2 = "alien_message_3-2.png"
@@ -51,15 +51,22 @@ image agent_message6 = "agent6.png"
 image breakwindow = "breakwindow.png"
 image marsattack = "marsattack.png"
 image pizzaguy = "pizzaguy.png"
+image alienboss = "alienboss.png"
+image raptilianagent = "raptilian.png"
+image babymoon = "babymoon.png"
+image moon = "character.png"
+image babysui = "babysui.png"
+image sui = "sui.png"
+image pizzadeliver = "realpizzadeliver.png"
 
 define n = Character(color = "#FFFFFF")
 define moon = Character(name = "당신", color = "#00FF00")
-define alien = Character(name = "??", color = "#A374DB")
-define sui = Character(name = "혜성", color = "#A374DB")
-define alienboss = Character(color = "#ff00ff")
+define alien = Character(name = "??", color = "#A374DB", image = "sui.png")
+define sui = Character(name = "혜성", color = "#A374DB", image = "sui.png")
+define alienboss = Character(name = "외계대장", color = "#ff00ff", image = "alienboss.png")
 define pizzadeliver = Character(name = "????", color = "#ffff00")
-define raptilianagent = Character(name = "랩틸리언", color = "#ffff00")
-define babyalien = Character(name = "??", color = "#A374DB")
+define raptilianagent = Character(name = "랩틸리언", color = "#ffff00", image = "raptilian.png")
+define babyalien = Character(name = "??", color = "#A374DB", image = "babysui.png")
 
 init:
     $ moonsaying = ""
@@ -205,7 +212,7 @@ label news:
     show news_comment:
         xpos 55
         ypos 30
-    $ moonsaying = "이상한 사람이 있네"
+    $ moonsaying = "이상한 사람이 있네\n검색해볼까"
     n "당신은 외계인 뉴스의 댓글을 읽기 시작합니다."
     python:
         while(True):
@@ -263,7 +270,7 @@ label cafe:
     show cafe_after_enroll:
         xpos 55
         ypos 30
-    n "카페에 가입해니 메세지가 와있습니다."
+    n "카페에 가입하니 메세지가 와있습니다."
     hide cafe_after_enroll
     show message1:
         xpos 55
@@ -298,13 +305,13 @@ label cafe:
     show message6:
         xpos 55
         ypos 30
-    $ moonsaying = "강력한 우주의 힘?"
+    $ moonsaying = "강력한 우주의 힘?\n일단 검색창으로 돌아가자"
     n "아무 키나 클릭하여 진행하세요"
     python:
         while(True):
             input = renpy.input(">> ")
             if "접속" in input or "들어" in input or "돌아" in input or "바탕화면" in input:
-                moonsaying = "한번 접속해볼까"
+                moonsaying = "한번 접속해볼까\n분명 주소가..."
                 break
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
@@ -396,6 +403,7 @@ label chat:
             ypos 30
         $ moonsaying = "해줘야 할 일?"
         n "아무 키나 클릭하여 진행하세요"
+        hide alien_massage_1_4
     elif chatchoice == 2:
         show alien_massage_2_1:
             xpos 55
@@ -561,7 +569,6 @@ label chat:
     return
 
 label secretagent:
-    hide alien_message_basic
     show background:
         xpos 55
         ypos 30
@@ -657,7 +664,7 @@ label secretagent:
             if count >= 5:
                 kdn = 1
                 break
-            if ("vpn" in input or "VPN" in input or "프록시" in input or "구름" in input) and ("사용" in input or "켜" in input or "키" in input):
+            if ("vpn" in input or "VPN" in input or "프록시" in input or "구름" in input) and ("사용" in input or "켜" in input or "키" in input or "켠" in input or "킨" in input):
                 moonsaying = "vpn을 사용하자"
                 break
             elif "나가" in input or "나간" in input or "돌아" in input or "바탕화면" in input:
@@ -671,6 +678,7 @@ label secretagent:
         hide background
         jump kidnap
         return
+    # vpn 화면 추가
     n "당신은 vpn을 켰다. 왠지 안전해진 기분이 든다"
     $ moonsaying = "슬슬 10분이..."
     n "*쿠웅*"
@@ -691,6 +699,10 @@ label secretagent:
 
 label meetalien:
     # 외계인 얼굴
+    hide background
+    show basic:
+        xpos 55
+        ypos 30
     $ moonsaying = "외계인? \n어디서 본거같은데"
     n "UFO에서 내린 외계인은 어딘가 익숙한 모습을 하고 있습니다."
     alien "반가워. 날 따라와."
@@ -713,8 +725,11 @@ label meetalien:
     # 우주선 내부 추가
     $ moonsaying = "내부는 이렇게 생겼구나"
     alien "도와줘서 고마워."
+    $ moonsaying = "사람?"
     alien "난 10년 전에 지구에서 만난 사람을 찾고 있어"
+    $ moonsaying = "10년 전이라니"
     alien "우리 종족이 지구에 오기 전, 선발대를 몇 명 보내 지구의 인간을 조사했어"
+    $ moonsaying = ""
     alien "나는 그 중 한명이었고."
     alien "나는 지구에서 한 사람을 만났어."
     alien "그 사람은 나에게 우정과 사랑을 가르쳐줬지."
@@ -734,7 +749,7 @@ label meetalien:
         alien "무슨 소리를 하는거야?"
         alien "인류가 멸망하는걸 보고싶지 않다면 서둘러"
         alien "먼저 대장한테 가자."
-    
+
     # 외계대장 얼굴
     $ moonsaying = "저게 그 대장?"
     alienboss "돌아왔군, 혜성."
@@ -753,7 +768,7 @@ label meetalien:
             input = renpy.input(">> ")
             if "열지" in input or "안" in input or "않" in input:
                 opendoor = 1
-                moonsaying = "문을 열지 않는게 좋아보이는데"
+                moonsaying = "문을 열지 않는게 \n좋아보이는데"
                 break
             elif "연" in input or "열" in input :
                 opendoor = 2
@@ -767,7 +782,7 @@ label meetalien:
         pizzadeliver "이렇게 된 이상 무단침입이다!"
     elif opendoor == 2:
         pizzadeliver "하하, 속았지!"
-    # 랩틸리언 얼굴
+    
     raptilianagent "우리는 대한민국 정부 소속 랩틸리언 부대다!"
     $ moonsaying = "그 찌라시 기사가 \n사실이었다니..."
     raptilianagent "우리 영공을 침해한 너희들을 모조리 박살내버리겠다!"
@@ -784,7 +799,11 @@ label meetalien:
 
 label past:
     # 과거회상 시작
-    # 혜성 얼굴
+    # 과거 사진 추가
+    hide character
+    show babymoon:
+        xpos 970
+        ypos 50
     $ moonsaying = "왜 그래? \n오늘따라 말이 없네"
     babyalien "..."
     $ moonsaying = "뭐...라고...!?"
@@ -798,7 +817,11 @@ label past:
 
     #과거회상 끝
     #페이드 인
-    #다시 전투
+    #전투 사진 추가
+    hide babymoon
+    show character:
+        xpos 970
+        ypos 50
     $ moonsaying = "설마 혜성이 찾던 \n사람이..."
     n "당신은 다시 의식을 찾았습니다."
     $ moonsaying = "*커다란 소리*"
@@ -826,6 +849,13 @@ label past:
     return
 
 label stopfight:
+    hide characterbox
+    hide character
+    hide saying
+    hide screen sayinglog
+    hide screen mainsaying
+    hide background
+    # 우주선 내부 사진 추가
     $ moonsaying = "멈춰!"
     n "순식간에 주변이 조용해졌습니다."
     $ moonsaying = ""
@@ -861,18 +891,26 @@ label stopfight:
 label happyend:
     n "*띵동*"
     raptilianagent "이번엔 우리가 아닌데"
-    # 피자배달부 얼굴
+    show pizzadeliver
     n "포톤피자에서 주문한 피자가 이제야 도착했습니다."
     n "배달이 오래 걸려 미안하다고 연거푸 고개를 숙이네요."
     n "그래도 덕분에 파인애플 피자를 오랜 친구에게 소개시켜 줄 수 있게 되었습니다!"
-    # 혜성과 피자
+    hide pizzadeliver
+    show sui:
+        xpos 540
+        ypos 220
     n "혜성도 파인애플 피자가 마음에 드는 모양인지 오랜 시간 동안 노려보고 있습니다."
     n "저 독특한 손동작은 유누성인들이 매우 맛있을 때 하는 동작이 틀림 없습니다!"
-    # 세 종족 모두
+    show moon:
+        xpos 300
+        ypos 220
+    show raptilianagent:
+        xpos 780
+        ypos 220
     n "지구는 곧 세 종족, 아니, 더 많은 종족들이 함께 살아가는 새로운 세상이 될 것입니다."
     n "서로를 이해하는 데에 꽤 오랜 시간이 걸리겠지만"
     n "결국 우리는 서로를 사랑하게 될 것입니다!"
-    # 검은 화면
+    # 우주선 내부 사진 숨기기
     n "HAPPY END \n다 함께 방 안으로"
     return
 
@@ -944,7 +982,12 @@ label kidnap:
     return
 
 label rip:
-    #검은 화면
+    hide characterbox
+    hide character
+    hide saying
+    hide screen sayinglog
+    hide screen mainsaying
+    hide basic
     raptilianagent "야! 인간을 죽이면 어떡해!"
     raptilianagent "인간이 저렇게 나약할줄은 몰랐지!"
     raptilianagent "초광자머신건 다섯 발 정도 맞았다고 죽을건 뭐야?"
