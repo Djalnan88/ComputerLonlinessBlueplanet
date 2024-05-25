@@ -4,9 +4,11 @@ image bgmain = "bgmain.png"
 image basic = "basic.png"
 image characterbox = "characterbox.png"
 image saying = "saying.png"
+image background = "background.png"
+image neine = "neine.png"
 image aliennews = "aliennews.png"
-image background = "\assets\background.png"
-image neine = "\assets\\neine.png"
+image news_comment = "news_comments.png"
+image search_one = "search_one.png"
 
 define n = Character(color = "#FFFFFF")
 
@@ -94,38 +96,53 @@ label tutorial:
 label news:
     $ moonsaying = "심심한데"
     # 컴퓨터 화면 추가
+    hide basic
+    show background:
+        xpos 55
+        ypos 30
     python:
         while(True):
             input = renpy.input(">> ")
-            if "인터넷" in input and ("켠" in input or "키" in input):
+            if "인터넷" in input:
                 moonsaying = "뉴스라도 볼까"
                 break
-            elif ("전원" in input or "컴퓨터" in input) and ("끄" in input or "끈" in input "꺼" in input):
+            elif ("전원" in input or "컴퓨터" in input) and ("끄" in input or "끈" in input or "꺼" in input):
                 moonsaying = "난 심심하다고"
+            elif "직박구리" in input:
+                moonsaying = "지금은 별로 안땡기는데"
+            elif "디스코드" in input or "디코" in input:
+                moonsaying = "아무런 연락이 없어"
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
     # 기사 종류 선택 화면 추가
+    hide basic
+    show neine:
+        xpos 55
+        ypos 30
     python:
         input = renpy.input(">> ")
         while(True):
-            if "보다" in input or "본다" in input or "보기" in input:
-                if("외계인" in input):
-                    moonsaying = "외계인? 흥미롭군"
-                else:
-                    moonsaying = "손이 미끄러졌다!"
+            if("외계인" in input or "우주" in input or "현풍" in input):
+                moonsaying = "외계인? 흥미롭군"
                 break
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
-                moonsaying = "그렇게는 못해"
+                moonsaying = "손이 미끄러졌다!"
+                break
     n "당신은 외계인 뉴스를 읽기 시작합니다."
     # 뉴스 화면 추가
+    hide neine
+    show aliennews:
+        xpos 55
+        ypos 30
+
     python:
         while(True):
             input = renpy.input(">> ")
-            if "댓글" in input and ("보다" in input or "본다" in input or "보기" in input):
+            if "댓글" in input and ("보" in input or "본" in input):
                 moonsaying = "댓글도 볼까"
                 break
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
@@ -133,5 +150,37 @@ label news:
             else:
                 moonsaying = "그렇게는 못해"
     # 댓글 화면 추가
+    hide aliennews
+    show news_comment:
+        xpos 55
+        ypos 30
+    $ moonsaying = "이상한 사람이 있네"
     n "당신은 외계인 뉴스의 댓글을 읽기 시작합니다."
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "canyouhearmefellas" in input and "검색" in input:
+                moonsaying = "이 사람은 누구지?"
+                break
+            elif ("TMTTM" in input or "Kim_3458" in input) and "검색" in input:
+                moonsaying = "별 내용이 없네"
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    # 검색 화면 추가
+    hide news_comment
+    show search_one:
+        xpos 55
+        ypos 30
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "끝" in input or "홈" in input or "돌아" in input or "바탕화면" in input:
+                moonsaying = "그 사람은 뭐였지?"
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
     return
