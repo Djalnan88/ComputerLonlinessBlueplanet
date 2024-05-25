@@ -39,7 +39,14 @@ image alein_message_oldfriend2 = "alien_message_1-3-3-3.png"
 image alein_message_oldfriend3 = "alien_message-1-3-3-4.png"
 image alein_message_oldfriend4 = "alien_message_1-3-3-5.png"
 image alein_message_oldfriend5 = "alien_message_1-3-3-6.png"
-
+image alien_do_not_exist = "alien_do_not_exist.png"
+image message_alert = "message_alert.png"
+image agent_message1 = "agent1.png"
+image agent_message2 = "agent2.png"
+image agent_message3 = "agent3.png"
+image agent_message4 = "agent4.png"
+image agent_message5 = "agent5.png"
+image agent_message6 = "agent6.png"
 
 define n = Character(color = "#FFFFFF")
 
@@ -526,9 +533,126 @@ label chat:
             $ moonsaying = "뭐...라고...!?"
             n "아무 키나 클릭하여 진행하세요"
             jump destroyed
-    
+    jump secretagent
+    return
+
+label secretagent:
+    hide alien_message_basic
+    show background:
+        xpos 55
+        ypos 30
+    $ moonsaying = "남는시간동안 뭘 해볼까"
+    n "낯선 자와의 대화가 끝나고, 당신은 하던 일을 마저 하기로 합니다."
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "인터넷" in input:
+                moonsaying = "인터넷을 더 둘러보자"
+                break
+            elif ("전원" in input or "컴퓨터" in input) and ("끄" in input or "끈" in input or "꺼" in input):
+                moonsaying = "난 심심하다고"
+            elif "직박구리" in input:
+                moonsaying = "지금은 별로 안땡기는데"
+            elif "디스코드" in input or "디코" in input:
+                moonsaying = "아무런 연락이 없어"
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    hide background
+    show alien_do_not_exist:
+        xpos 55
+        ypos 30
+    $ moonsaying = "이건 뭐지?"
+    n "인터넷을 키자 낯선 화면이 보입니다."
+    hide alien_do_not_exist
+    show message_alert:
+        xpos 55
+        ypos 30
+    $ moonsaying = "새로운 메세지?"
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "읽" in input or "보" in input or "본" in input or "확인" in input:
+                moonsaying = "누구지?"
+                break
+            elif ("전원" in input or "컴퓨터" in input) and ("끄" in input or "끈" in input or "꺼" in input):
+                moonsaying = "메시지가 신경쓰이는걸"
+            elif "나가" in input or "나간" in input or "돌아" in input or "바탕화면" in input:
+                moonsaying = "메시지가 신경쓰이는걸"
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    hide message_alert
+    show agent_message1:
+        xpos 55
+        ypos 30
+    $ moonsaying = "어떻게 지내냐니...\n일단 그럭저럭이라고 대답하자"
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message1
+    show agent_message2:
+        xpos 55
+        ypos 30
+    $ moonsaying = "흉흉하다고?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message2
+    show agent_message3:
+        xpos 55
+        ypos 30
+    $ moonsaying = "위험한 곳이라...\n난 현실보다 더 익숙하지만 말이야"
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message3
+    show agent_message4:
+        xpos 55
+        ypos 30
+    $ moonsaying = "구름? 무슨 소리지?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message4
+    show agent_message5:
+        xpos 55
+        ypos 30
+    $ moonsaying = "이게 무슨 소리야?\n물어봐야겠어"
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message5
+    show agent_message6:
+        xpos 55
+        ypos 30
+    $ moonsaying = "대화가 끊겼다..."
+    n "아무 키나 클릭하여 진행하세요"
+    hide agent_message6
+    show background:
+        xpos 55
+        ypos 30
+    $ moonsaying = "방금의 대화가 신경쓰이네"
+    python:
+        count = 0
+        kdn = 0
+        while(True):
+            input = renpy.input(">> ")
+            if count >= 5:
+                kdn = 1
+                break
+            if ("vpn" in input or "VPN" in input or "프록시" in input or "구름" in input) and ("사용" in input or "켜" in input or "키" in input):
+                moonsaying = "vpn을 사용하자"
+                break
+            elif "나가" in input or "나간" in input or "돌아" in input or "바탕화면" in input:
+                moonsaying = "대화가 신경쓰이는걸"
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+            count += 1
+    if kdn == 1:
+        jump kidnap
+        return
+
     return
 
 label destroyed:
+    n "아직 안만듬 ㅅㄱ"
+    return
+
+label kidnap:
     n "아직 안만듬 ㅅㄱ"
     return
