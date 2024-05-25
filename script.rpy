@@ -53,6 +53,7 @@ image marsattack = "marsattack.png"
 image pizzaguy = "pizzaguy.png"
 
 define n = Character(color = "#FFFFFF")
+define moon = Character(name = "당신", color = "#00FF00")
 define alien = Character(name = "??", color = "#A374DB")
 define sui = Character(name = "혜성", color = "#A374DB")
 define alienboss = Character(color = "#ff00ff")
@@ -789,7 +790,7 @@ label past:
     $ moonsaying = "뭐...라고...!?"
     babyalien "나 고향으로 돌아가야 한대..."
     $ moonsaying = "무슨 소리야?"
-    babyalien "내가 보고싶으면 하늘에서 유누성을 찾아줘."
+    babyalien "내가 보고싶으면 하늘에서 가장 밝은 별인 유누성을 찾아줘."
     $ moonsaying = "그럼 평생 \n못보는거잖아!"
     babyalien "나도 너가 생각날 때마다 지구를 바라볼게."
     $ moonsaying = "몰라! \n너 미워!"
@@ -816,11 +817,65 @@ label past:
                 kdn = 2
                 break
             else :
-                moonsaying = "목소리가 닿지 \n않아"
+                moonsaying = "목소리가 \n닿지 않아"
             count += 1
     if kdn == 1:
-        
+        jump rip
+    elif kdn == 2:
+        jump stopfight
     return
+
+label stopfight:
+    $ moonsaying = "멈춰!"
+    n "순식간에 주변이 조용해졌습니다."
+    $ moonsaying = ""
+    moon "더 이상 싸울 필요는 없어요!"
+    moon "내가 유누성인이 찾던 그 사람이고, 유누성인들은 화친을 위해 지구에 온거니까요!"
+    raptilianagent "이게 무슨 도마뱀소리야?"
+    moon "유누성인들은 우정과 사랑을 가르쳐준 인간을 찾아왔어요."
+    moon "그 사람을 찾는다면 지구인과 유누성인의 화합이 가능할 것이라 믿고요."
+    moon "기절한 순간 기억났어요. 어렸을 때 분명 유누성이라는 이름을 들은 적이 있다는걸."
+    sui "설마..!"
+    moon "혜성아, 나 기억났어."
+    moon "너가 가버린 뒤로 난 방에만 틀어박혀있었지."
+    moon "이젠 더이상 방 안에만 있지 않을거야."
+    moon "너가 내 날개야!"
+    sui "대장님, 이 인간이 제가 말한 그 사람입니다."
+    sui "말투가 인터넷 많이 한 사람처럼 다소 어색하고 피자배달부 말고는 얘기해본 적이 없는 사람처럼 목소리가 다소 갈라지긴 했지만!"
+    sui "방금도 보셨다시피 저희의 전투를 말 한마디로 끝내지 않았습니까!"
+    alienboss "...과연"
+    alienboss "좋아. 유누성인과 지구인은 오늘부터 친구다."
+    alienboss "그리고..."
+    alienboss "도마뱀머리들?"
+    raptilianagent "국가안보를지키기위해오늘도이한몸희생하는위대하고고귀한랩틸리언대원 이라고 불러라!"
+    alienboss "..."
+    alienboss "그대들은 정부의 사람인가?"
+    raptilianagent "그렇다!"
+    alienboss "그렇다면 나를 정부에게 안내해라."
+    alienboss "윤우성대통령과 직접 대화를 하겠다."
+    alienboss "인간. 너도 함께 가지 않겠나?"
+    moon "당연하지!"
+    jump happyend
+    return
+
+label happyend:
+    n "*띵동*"
+    raptilianagent "이번엔 우리가 아닌데"
+    # 피자배달부 얼굴
+    n "포톤피자에서 주문한 피자가 이제야 도착했습니다."
+    n "배달이 오래 걸려 미안하다고 연거푸 고개를 숙이네요."
+    n "그래도 덕분에 파인애플 피자를 오랜 친구에게 소개시켜 줄 수 있게 되었습니다!"
+    # 혜성과 피자
+    n "혜성도 파인애플 피자가 마음에 드는 모양인지 오랜 시간 동안 노려보고 있습니다."
+    n "저 독특한 손동작은 유누성인들이 매우 맛있을 때 하는 동작이 틀림 없습니다!"
+    # 세 종족 모두
+    n "지구는 곧 세 종족, 아니, 더 많은 종족들이 함께 살아가는 새로운 세상이 될 것입니다."
+    n "서로를 이해하는 데에 꽤 오랜 시간이 걸리겠지만"
+    n "결국 우리는 서로를 사랑하게 될 것입니다!"
+    # 검은 화면
+    n "HAPPY END \n다 함께 방 안으로"
+    return
+
 label destroyed:
     show basic:
         xpos 55
@@ -885,12 +940,10 @@ label kidnap:
 
     n "당신은 국가안보를지키기위해활동하는국가의비밀요원 랩틸리언에게 납치당했습니다."
     n "당신은 랩틸리언에게 납치당했습니다.\n그 뒤로 당신의 모습을 본 사람은 아무도 없었습니다."
-    n "BAD END \n영원히 방 안에"
-            
+    n "BAD END \n영원히 방 안에"  
     return
 
 label rip:
-    #페이드아웃
     #검은 화면
     raptilianagent "야! 인간을 죽이면 어떡해!"
     raptilianagent "인간이 저렇게 나약할줄은 몰랐지!"
@@ -899,3 +952,4 @@ label rip:
     n "두 종족은 당신의 죽음을 10초정도 애도하고 전투로 돌아갔으며"
     n "당신이 지구가 어떻게 변했는지 알 길은 영영 사라지고 말았습니다."
     n "BAD END \n불 꺼진 방"
+    return
