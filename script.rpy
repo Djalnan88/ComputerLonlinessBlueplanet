@@ -5,6 +5,8 @@ image basic = "basic.png"
 image characterbox = "characterbox.png"
 image saying = "saying.png"
 image aliennews = "aliennews.png"
+image background = "\assets\background.png"
+image neine = "\assets\\neine.png"
 
 define n = Character(color = "#FFFFFF")
 
