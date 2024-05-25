@@ -11,7 +11,7 @@
 ##
 ## 문자열을 _()로 둘러 쌓으면 씌우면 번역의 대상으로 표시됩니다.
 
-define config.name = _("YakDecalture")
+define config.name = _("CPU\nLonliness\nBlue planet")
 
 
 ## 위에 주어진 제목이 주 메뉴 화면에 표시되는지 결정합니다. 제목을 숨기려면 이것
@@ -35,7 +35,7 @@ define gui.about = _p("""
 ## 배포판의 실행 파일과 디렉토리에 사용되는 게임의 약식 이름. 이것은 ASCII 전용
 ## 이어야 하며 공백, 콜론 또는 세미콜론을 포함해서는 안 됩니다.
 
-define build.name = "YakDecalture"
+define build.name = "CPU_Lonliness_BluePlanet"
 
 
 ## 음악과 음향 ######################################################################

@@ -151,7 +151,7 @@ label tutorial:
 
 label news:
     $ moonsaying = "심심한데"
-    # 컴퓨터 화면 추가
+
     hide basic
     show background:
         xpos 55
@@ -172,7 +172,7 @@ label news:
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
-    # 기사 종류 선택 화면 추가
+
     hide basic
     show neine:
         xpos 55
@@ -191,7 +191,7 @@ label news:
                 moonsaying = "손이 미끄러졌다!"
                 break
     n "당신은 외계인 뉴스를 읽기 시작합니다."
-    # 뉴스 화면 추가
+
     hide neine
     show aliennews:
         xpos 55
@@ -207,7 +207,7 @@ label news:
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
-    # 댓글 화면 추가
+
     hide aliennews
     show news_comment:
         xpos 55
@@ -522,6 +522,7 @@ label chat:
                 ypos 30
             $ moonsaying = "갑자기 떠난 친구라"
             n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend0
             show alein_message_oldfriend1:
                 xpos 55
                 ypos 30
@@ -551,6 +552,7 @@ label chat:
                 ypos 30
             $ moonsaying = "조금 무서운데\n뭐 별일이야 없겠지"
             n "아무 키나 클릭하여 진행하세요"
+            hide alein_message_oldfriend5
         elif hearchoice == 2:
             show alien_message_hack_bad1:
                 xpos 55
@@ -698,24 +700,27 @@ label secretagent:
     return
 
 label meetalien:
-    # 외계인 얼굴
     hide background
     show basic:
         xpos 55
         ypos 30
     $ moonsaying = "외계인? \n어디서 본거같은데"
     n "UFO에서 내린 외계인은 어딘가 익숙한 모습을 하고 있습니다."
+    show sui:
+        xpos 355
+        ypos 220
     alien "반가워. 날 따라와."
     python:
         follow = 0
         input = renpy.input(">> ")
         if "따라가지" in input or "타지" in input or "않" in input or "도망" in input:
             follow = 1
+            moonsaying = "따라가야 할 것 \n같은 기분이..."
         elif "따라" in input or "타" in input or "탄" in input :
             follow = 2
+            moonsaying = "외계인을 따라가자"
         else :
             follow = 1
-        moonsaying = "외계인을 따라가자"
     if follow == 1 :
         n "당신은 알 수 없는 힘에 이끌려 외계인을 따라갑니다."
     if follow == 2 :
@@ -741,7 +746,7 @@ label meetalien:
     alien "내가 오래전 봤던 그 인간!"
     alien "그 인간을 데려가면 대장은 지구에 대한 공격을 멈출거야."
     $ input = renpy.input(">> ")
-    if "좋" in input or "알" in input or "데려" in input:
+    if "좋" in input or "알" in input or "데려" in input or "가자" in input or "간다" in input:
         $ moonsaying = "좋아. 그 인간을 찾아가자."
         alien "먼저 대장한테 가자."
     else :
@@ -752,6 +757,13 @@ label meetalien:
 
     # 외계대장 얼굴
     $ moonsaying = "저게 그 대장?"
+    hide sui
+    show sui:
+        xpos 140
+        ypos 220
+    show alienboss:
+        xpos 570
+        ypos 220
     alienboss "돌아왔군, 혜성."
     sui "네, 대장님."
     alienboss "그리고 반갑다, 지구인."
@@ -782,7 +794,9 @@ label meetalien:
         pizzadeliver "이렇게 된 이상 무단침입이다!"
     elif opendoor == 2:
         pizzadeliver "하하, 속았지!"
-    
+    show raptilianagent:
+        xpos 355
+        ypos 220
     raptilianagent "우리는 대한민국 정부 소속 랩틸리언 부대다!"
     $ moonsaying = "그 찌라시 기사가 \n사실이었다니..."
     raptilianagent "우리 영공을 침해한 너희들을 모조리 박살내버리겠다!"
@@ -793,17 +807,22 @@ label meetalien:
     n "*퍽*"
     $ moonsaying = "으윽"
     n "당신은 어디선가 날아온 파편을 맞고 기절했습니다"
-    # 페이드아웃
     jump past
     return
 
 label past:
     # 과거회상 시작
     # 과거 사진 추가
+    hide alienboss
+    hide sui
+    hide raptilianagent
     hide character
     show babymoon:
         xpos 970
         ypos 50
+    show babysui:
+        xpos 355
+        ypos 220
     $ moonsaying = "왜 그래? \n오늘따라 말이 없네"
     babyalien "..."
     $ moonsaying = "뭐...라고...!?"
@@ -816,12 +835,20 @@ label past:
     babyalien "잠깐! 기다려!"
 
     #과거회상 끝
-    #페이드 인
-    #전투 사진 추가
+    hide babysui
     hide babymoon
     show character:
         xpos 970
         ypos 50
+    show sui:
+        xpos 140
+        ypos 220
+    show alienboss:
+        xpos 570
+        ypos 220
+    show raptilianagent:
+        xpos 355
+        ypos 220
     $ moonsaying = "설마 혜성이 찾던 \n사람이..."
     n "당신은 다시 의식을 찾았습니다."
     $ moonsaying = "*커다란 소리*"
@@ -849,12 +876,7 @@ label past:
     return
 
 label stopfight:
-    hide characterbox
-    hide character
-    hide saying
-    hide screen sayinglog
-    hide screen mainsaying
-    hide background
+    
     # 우주선 내부 사진 추가
     $ moonsaying = "멈춰!"
     n "순식간에 주변이 조용해졌습니다."
@@ -891,26 +913,38 @@ label stopfight:
 label happyend:
     n "*띵동*"
     raptilianagent "이번엔 우리가 아닌데"
-    show pizzadeliver
+    hide sui
+    hide alienboss
+    hide raptilianagent
+    show pizzadeliver:
+        xpos 355
+        ypos 220
     n "포톤피자에서 주문한 피자가 이제야 도착했습니다."
     n "배달이 오래 걸려 미안하다고 연거푸 고개를 숙이네요."
     n "그래도 덕분에 파인애플 피자를 오랜 친구에게 소개시켜 줄 수 있게 되었습니다!"
     hide pizzadeliver
-    show sui:
+    hide characterbox
+    hide character
+    hide saying
+    hide screen sayinglog
+    hide screen mainsaying
+    hide background
+    show sui with dissolve:
         xpos 540
         ypos 220
     n "혜성도 파인애플 피자가 마음에 드는 모양인지 오랜 시간 동안 노려보고 있습니다."
     n "저 독특한 손동작은 유누성인들이 매우 맛있을 때 하는 동작이 틀림 없습니다!"
-    show moon:
+    hide character
+    show moon with dissolve:
         xpos 300
         ypos 220
-    show raptilianagent:
+    show raptilianagent with dissolve:
         xpos 780
         ypos 220
     n "지구는 곧 세 종족, 아니, 더 많은 종족들이 함께 살아가는 새로운 세상이 될 것입니다."
     n "서로를 이해하는 데에 꽤 오랜 시간이 걸리겠지만"
     n "결국 우리는 서로를 사랑하게 될 것입니다!"
-    # 우주선 내부 사진 숨기기
+    # 엔딩 사진 추가
     n "HAPPY END \n다 함께 방 안으로"
     return
 
