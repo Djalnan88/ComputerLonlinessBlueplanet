@@ -53,6 +53,11 @@ image marsattack = "marsattack.png"
 image pizzaguy = "pizzaguy.png"
 
 define n = Character(color = "#FFFFFF")
+define alien = Character(name = "??", color = "#A374DB")
+define sui = Character(name = "혜성", color = "#A374DB")
+define alienboss = Character(color = "#ff00ff")
+define pizzadeliver = Character(name = "????", color = "#ffff00")
+define raptilianagent = Character(name = "랩틸리언", color = "#ffff00")
 
 init:
     $ moonsaying = ""
@@ -123,7 +128,7 @@ label tutorial:
     python :
         while(True):
             input = renpy.input("\n>> ")
-            if "주문" in input and "피자" in input:
+            if "주" in input and "피자" in input:
                 moonsaying = "파인애플 피자가 좋겠어"
                 presaying = ""
                 break
@@ -678,9 +683,105 @@ label secretagent:
                 moonsaying = "지금 그럴 때가 아니야"
             else:
                 moonsaying = "그렇게는 못해"
-    n "창문을 열자 밖에는 커다란 UFO가 떠있다."
-
+    n "창문을 열자 밖에는 커다란 UFO가 떠있습니다."
+    jump meetalien
     return
+
+label meetalien:
+    # 외계인 얼굴
+    $ moonsaying = "외계인? \n어디서 본거같은데"
+    n "UFO에서 내린 외계인은 어딘가 익숙한 모습을 하고 있습니다."
+    alien "반가워. 날 따라와."
+    python:
+        follow = 0
+        input = renpy.input(">> ")
+        if "따라가지" in input or "타지" in input or "않" in input or "도망" in input:
+            follow = 1
+        elif "따라" in input or "타" in input or "탄" in input :
+            follow = 2
+        else :
+            follow = 1
+        moonsaying = "외계인을 따라가자"
+    if follow == 1 :
+        n "당신은 알 수 없는 힘에 이끌려 외계인을 따라갑니다."
+    if follow == 2 :
+        n "당신은 외계인을 따라 UFO에 탑승합니다."
+    
+    hide background
+    # 우주선 내부 추가
+    $ moonsaying = "내부는 이렇게 생겼구나"
+    alien "도와줘서 고마워."
+    alien "난 10년 전에 지구에서 만난 사람을 찾고 있어"
+    alien "우리 종족이 지구에 오기 전, 선발대를 몇 명 보내 지구의 인간을 조사했어"
+    alien "나는 그 중 한명이었고."
+    alien "나는 지구에서 한 사람을 만났어."
+    alien "그 사람은 나에게 우정과 사랑을 가르쳐줬지."
+    alien "하지만 대부분의 선발대는 인간의 폭력적인 면을 본 것 같아."
+    alien "난 그들에게 폭력적이고 위험한 인간의 이야기를 많이 들었어."
+    alien "우리의 대장은 지구인이 위험하다고 생각해."
+    alien "인류의 과학 수준이 우리를 따라잡기 전에 처리하고 싶어하지."
+    alien "하지만 나는 지구인에게서 다른 모습들을 봤어."
+    alien "내가 오래전 봤던 그 인간!"
+    alien "그 인간을 데려가면 대장은 지구에 대한 공격을 멈출거야."
+    $ input = renpy.input(">> ")
+    if "좋" in input or "알" in input or "데려" in input:
+        $ moonsaying = "좋아. 그 인간을 찾아가자."
+        alien "먼저 대장한테 가자."
+    else :
+        $ moonsaying = "별로 그러고싶지 않은데"
+        alien "무슨 소리를 하는거야?"
+        alien "인류가 멸망하는걸 보고싶지 않다면 서둘러"
+        alien "먼저 대장한테 가자."
+    
+    # 외계대장 얼굴
+    $ moonsaying = "저게 그 대장?"
+    alienboss "돌아왔군, 혜성."
+    sui "네, 대장님."
+    alienboss "그리고 반갑다, 지구인."
+    $ moonsaying = renpy.input(">> ")
+    alienboss "공격 개시까지 얼마 남지 않았다."
+    alienboss "그 사람을 찾아오지 않는다면 공격을 감행할 것이다."
+
+    $ moonsaying = "배달? 여기로?"
+    n "*띵동*"
+    sui "이게 무슨 소리지?"
+    python:
+        opendoor = 0
+        while(True):
+            input = renpy.input(">> ")
+            if "열지" in input or "안" in input or "않" in input:
+                opendoor = 1
+                moonsaying = "문을 열지 않는게 좋아보이는데"
+                break
+            elif "연" in input or "열" in input :
+                opendoor = 2
+                moonsaying = "배달이다!"
+                break
+            else:
+                moonsaying = "그렇게는 못해"
+    alienboss "지구에는 이런 문화가 있는 것인가"
+    $ moonsaying = "뭐...라고...!?"
+    if opendoor == 1:
+        pizzadeliver "이렇게 된 이상 무단침입이다!"
+    elif opendoor == 2:
+        pizzadeliver "하하, 속았지!"
+    # 랩틸리언 얼굴
+    raptilianagent "우리는 대한민국 정부 소속 랩틸리언 부대다!"
+    $ moonsaying = "그 찌라시 기사가 \n사실이었다니..."
+    raptilianagent "우리 영공을 침해한 너희들을 모조리 박살내버리겠다!"
+    alienboss "용감하게 싸워라, 유누성의 전사들이여!"
+    $ moonsaying = "유누...성?"
+    alienboss "저 도마뱀들을 전부 박살내는거다!"
+    $ moonsaying = "잠깐만! \n유누성이라면 분명..!"
+    n "*퍽*"
+    $ moonsaying = "으윽"
+    n "당신은 어디선가 날아온 파편을 맞고 기절했습니다"
+    jump past
+    return
+
+label past:
+    # 과거회상 시작
+
 
 label destroyed:
     show basic:
@@ -718,7 +819,7 @@ label kidnap:
         ypos 30
     $ moonsaying = "피자가 왔나?"
     n "*띵동*"
-    n "\"페퍼로니 피자 배달왔습니다\""
+    pizzadeliver "페퍼로니 피자 배달왔습니다"
     menu :
         "문을 연다." :
             $ moonsaying = "배고팠는데 잘됐네"
@@ -730,7 +831,7 @@ label kidnap:
             hide screen mainsaying
             hide basic
             scene pizzaguy
-            n "\"ㅎㅇ?\""
+            raptilianagent "ㅎㅇ?"
             
         "문을 열지 않는다." :
             $ moonsaying = "난 파인애플 피자를 \n시켰는데..?"
@@ -744,7 +845,7 @@ label kidnap:
             scene kidnap
             n "*와장창*"
 
-    n "당신은 랩틸리언에게 납치당했습니다."
+    n "당신은 국가안보를지키기위해활동하는국가의비밀요원 랩틸리언에게 납치당했습니다."
     n "당신은 랩틸리언에게 납치당했습니다.\n그 뒤로 당신의 모습을 본 사람은 아무도 없었습니다."
     n "BAD END \n영원히 방 안에"
             
