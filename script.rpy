@@ -58,6 +58,7 @@ define sui = Character(name = "혜성", color = "#A374DB")
 define alienboss = Character(color = "#ff00ff")
 define pizzadeliver = Character(name = "????", color = "#ffff00")
 define raptilianagent = Character(name = "랩틸리언", color = "#ffff00")
+define babyalien = Character(name = "??", color = "#A374DB")
 
 init:
     $ moonsaying = ""
@@ -776,13 +777,50 @@ label meetalien:
     n "*퍽*"
     $ moonsaying = "으윽"
     n "당신은 어디선가 날아온 파편을 맞고 기절했습니다"
+    # 페이드아웃
     jump past
     return
 
 label past:
     # 과거회상 시작
+    # 혜성 얼굴
+    $ moonsaying = "왜 그래? \n오늘따라 말이 없네"
+    babyalien "..."
+    $ moonsaying = "뭐...라고...!?"
+    babyalien "나 고향으로 돌아가야 한대..."
+    $ moonsaying = "무슨 소리야?"
+    babyalien "내가 보고싶으면 하늘에서 유누성을 찾아줘."
+    $ moonsaying = "그럼 평생 \n못보는거잖아!"
+    babyalien "나도 너가 생각날 때마다 지구를 바라볼게."
+    $ moonsaying = "몰라! \n너 미워!"
+    babyalien "잠깐! 기다려!"
 
-
+    #과거회상 끝
+    #페이드 인
+    #다시 전투
+    $ moonsaying = "설마 혜성이 찾던 \n사람이..."
+    n "당신은 다시 의식을 찾았습니다."
+    $ moonsaying = "*커다란 소리*"
+    n "지구의 평화를 위해 빨리 이 사실을 알려야 합니다!"
+    $ moonsaying = "분명 학교폭력을 \n멈추는 방법이..."
+    n "주변의 소리가 너무 커서 싸움을 멈추기 쉽지 않아 보입니다."
+    python:
+        count = 0
+        kdn = 0
+        while(True):
+            if count > 5:
+                kdn = 1
+                break
+            input = renpy.input(">> ")
+            if "멈춰" in input :
+                kdn = 2
+                break
+            else :
+                moonsaying = "목소리가 닿지 \n않아"
+            count += 1
+    if kdn == 1:
+        
+    return
 label destroyed:
     show basic:
         xpos 55
@@ -850,3 +888,14 @@ label kidnap:
     n "BAD END \n영원히 방 안에"
             
     return
+
+label rip:
+    #페이드아웃
+    #검은 화면
+    raptilianagent "야! 인간을 죽이면 어떡해!"
+    raptilianagent "인간이 저렇게 나약할줄은 몰랐지!"
+    raptilianagent "초광자머신건 다섯 발 정도 맞았다고 죽을건 뭐야?"
+    n "당신은 유누성인과 랩틸리언의 전투에 휘말려 사망했습니다."
+    n "두 종족은 당신의 죽음을 10초정도 애도하고 전투로 돌아갔으며"
+    n "당신이 지구가 어떻게 변했는지 알 길은 영영 사라지고 말았습니다."
+    n "BAD END \n불 꺼진 방"
