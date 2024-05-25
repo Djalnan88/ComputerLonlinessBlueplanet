@@ -24,6 +24,14 @@ image alien_massage_1_1 = "alien_massage_1.png"
 image alien_massage_1_2 = "alien_massage_1-1.png"
 image alien_massage_1_3 = "alien_massage_1-2.png"
 image alien_massage_1_4 = "alien_massage_1-3.png"
+image alien_massage_2_1 = "alien_massage_2-1.png"
+image alien_massage_2_2 = "alien_massage_2-2.png"
+image alien_massage_2_3 = "alien_massage_2-3.png"
+image alien_massage_2_2_angry1 = "alien_massage_2-2-angry1.png"
+image alien_message_2_2_angry2 = "alien_message_2-2-angry2.png"
+image alien_message_3_1 = "alien_message_3-1.png"
+image alien_message_3_2 = "alien_message_3-2.png"
+image alien_message_3_3 = "alien_message_3-3.png"
 
 define n = Character(color = "#FFFFFF")
 
@@ -338,8 +346,8 @@ label chat:
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
+    hide alien_message_basic2
     if chatchoice == 1:
-        hide alien_message_basic2
         show alien_massage_1_1:
             xpos 55
             ypos 30
@@ -362,4 +370,81 @@ label chat:
             ypos 30
         $ moonsaying = "해줘야 할 일?"
         n "아무 키나 클릭하여 진행하세요"
-        
+    elif chatchoice == 2:
+        show alien_massage_2_1:
+            xpos 55
+            ypos 30
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_massage_2_1
+        show alien_massage_2_2:
+            xpos 55
+            ypos 30
+        $ moonsaying = "진지한 이야기?"
+        python:
+            hearchoice = 0
+            while(True):
+                input = renpy.input(">> ")
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                    moonsaying = "한번 들어보자"
+                    hearchoice = 1
+                    break
+                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들어본다" in input or "안들어보자" in input or "안들어보겠" in input or "듣지":
+                    moonsaying = "난 듣기 싫은데"
+                    hearchoice = 2
+                    break
+                else:
+                    moonsaying = "그렇게는 못해"
+        hide alien_massage_2_2
+        if hearchoice == 1:
+            show alien_massage_2_3:
+                xpos 55
+                ypos 30
+            n "아무 키나 클릭하여 진행하세요"
+            $ moonsaying = "오랜 친구라\n어릴 적 친구가 생각나네"
+        elif hearchoice == 2:
+            show alien_massage_2_2_angry1:
+                xpos 55
+                ypos 30
+            $ moonsaying = "어...\n혹시 화났나?"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alien_massage_2_2_angry1
+            show alien_message_2_2_angry2:
+                xpos 55
+                ypos 30
+            $ moonsaying = "뭐...라고...!?"
+            n "아무 키나 클릭하여 진행하세요"
+            jump destroyed
+    elif chatchoice == 3:
+        show alien_message_3_1:
+            xpos 55
+            ypos 30
+        $ moonsaying = ""
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_message_3_1
+        show alien_message_3_2:
+            xpos 55
+            ypos 30
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_message_3_2
+        show alien_message_3_3:
+            xpos 55
+            ypos 30
+        python:
+            hearchoice = 0
+            while(True):
+                input = renpy.input(">> ")
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                    moonsaying = "한번 들어보자"
+                    hearchoice = 1
+                    break
+                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들어본다" in input or "안들어보자" in input or "안들어보겠" in input or "듣지":
+                    moonsaying = "난 듣기 싫은데"
+                    hearchoice = 2
+                    break
+                else:
+                    moonsaying = "그렇게는 못해"
+        hide alien_message_3_3
+
+label destroyed:
+    n "아직 안만듬 ㅅㄱ"
+    return
