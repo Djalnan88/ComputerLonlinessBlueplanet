@@ -317,7 +317,7 @@ label cafe:
         xpos 55
         ypos 30
     n "아무 키나 클릭하여 진행하세요"
-    hide alien_message_basic:
+    hide alien_message_basic
     show alien_message_basic2:
         xpos 55
         ypos 30
@@ -384,7 +384,7 @@ label chat:
             hearchoice = 0
             while(True):
                 input = renpy.input(">> ")
-                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
                     moonsaying = "한번 들어보자"
                     hearchoice = 1
                     break
@@ -433,7 +433,7 @@ label chat:
             hearchoice = 0
             while(True):
                 input = renpy.input(">> ")
-                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
                     moonsaying = "한번 들어보자"
                     hearchoice = 1
                     break
