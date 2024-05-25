@@ -9,6 +9,21 @@ image neine = "neine.png"
 image aliennews = "aliennews.png"
 image news_comment = "news_comments.png"
 image search_one = "search_one.png"
+image cafe_before_enroll = "cafe_before_enroll.png"
+image cafe_after_enroll = "cafe_after_enroll.png"
+image message1 = "message1.png"
+image message2 = "message2.png"
+image message3 = "message3.png"
+image message4 = "message4.png"
+image message5 = "message5.png"
+image message6 = "message6.png"
+image lovechat_background = "lovechat_background.png"
+image alien_message_basic = "alien_message_basic.png"
+image alien_message_basic2 = "alien_message_basic2.png"
+image alien_massage_1_1 = "alien_massage_1.png"
+image alien_massage_1_2 = "alien_massage_1-1.png"
+image alien_massage_1_3 = "alien_massage_1-2.png"
+image alien_massage_1_4 = "alien_massage_1-3.png"
 
 define n = Character(color = "#FFFFFF")
 
@@ -121,6 +136,8 @@ label news:
     show neine:
         xpos 55
         ypos 30
+    n "브라우저를 열자 뉴스 기사들이 화면을 채웁니다."
+    n "시간 때울 겸 하나 읽어봐도 괜찮겠네요. 읽고 싶은 뉴스를 골라봅시다. "
     python:
         input = renpy.input(">> ")
         while(True):
@@ -183,4 +200,166 @@ label news:
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
+    hide search_one
+    show neine:
+        xpos 55
+        ypos 30
+    n "기사를 나가자 곧 또다른 화면이 보입니다."
+    jump cafe
     return
+
+label cafe:
+    hide basic
+    show cafe_before_enroll:
+        xpos 55
+        ypos 30
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "가입" in input:
+                moonsaying = "먼저 카페에 가입하자"
+                break
+            elif "클릭" in input or "보" in input or "본" in input or "열" in input or "연" or "들어" in input :
+                moonsaying = "글을 보기 위해선\n회원가입이 필요해"
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    hide cafe_before_enroll
+    show cafe_after_enroll:
+        xpos 55
+        ypos 30
+    n "카페에 가입해니 메세지가 와있습니다."
+    hide cafe_after_enroll
+    show message1:
+        xpos 55
+        ypos 30
+    $ moonsaying = "누구지?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide message1
+    show message2:
+        xpos 55
+        ypos 30
+    $ moonsaying = "그걸 어떻게..."
+    n "아무 키나 클릭하여 진행하세요"
+    hide message2
+    show message3:
+        xpos 55
+        ypos 30
+    $ moonsaying = "위대한 외계존재?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide message3
+    show message4:
+        xpos 55
+        ypos 30
+    $ moonsaying = "사이빈가?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide message4
+    show message5:
+        xpos 55
+        ypos 30
+    $ moonsaying = "사이트? 통신?"
+    n "아무 키나 클릭하여 진행하세요"
+    hide message5
+    show message6:
+        xpos 55
+        ypos 30
+    $ moonsaying = "강력한 우주의 힘?"
+    n "아무 키나 클릭하여 진행하세요"
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "끝" in input or "홈" in input or "돌아" in input or "바탕화면" in input:
+                moonsaying = "한번 접속해볼까"
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    hide message6
+    show neine:
+        xpos 55
+        ypos 30
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if "makeitup.com" in input:
+                moonsaying = "분명 코드가..."
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    hide neine
+    show lovechat_background:
+        xpos 55
+        ypos 30
+    python:
+        while(True):
+            input = renpy.input(">> ")
+            if input == "424242" :
+                moonsaying = "누구지?"
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "코드가 틀렸어"
+    hide lovechat_background
+    show alien_message_basic:
+        xpos 55
+        ypos 30
+    n "아무 키나 클릭하여 진행하세요"
+    hide alien_message_basic:
+    show alien_message_basic2:
+        xpos 55
+        ypos 30
+    n "아무 키나 클릭하여 진행하세요"
+    jump chat
+    return
+
+label chat:
+    python:
+        chatchoice = 0
+        while(True):
+            input = renpy.input(">> ")
+            if "누가" in input or "누군" in input or "알려" in input:
+                moonsaying = "사실대로 말하자"
+                chatchoice = 1
+                break
+            elif "아무" in input or "무작위" in input:
+                moonsaying = "정보를 받은건 숨기는게 좋겠어"
+                chatchoice = 2
+                break
+            elif "해킹":
+                moonsaying = "세게 나가볼까?"
+                chatchoice = 3
+                break
+            elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
+                moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            else:
+                moonsaying = "그렇게는 못해"
+    if chatchoice == 1:
+        hide alien_message_basic2
+        show alien_massage_1_1:
+            xpos 55
+            ypos 30
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_massage_1_1
+        show alien_massage_1_2:
+            xpos 55
+            ypos 30
+        $ moonsaying = "만나자고?\n이거 그린라이트인가?"
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_massage_1_2
+        show alien_massage_1_3:
+            xpos 55
+            ypos 30
+        $ moonsaying = "우리집 앞?\n여긴 어떻게 안거야?"
+        n "아무 키나 클릭하여 진행하세요"
+        hide alien_massage_1_3
+        show alien_massage_1_4:
+            xpos 55
+            ypos 30
+        $ moonsaying = "해줘야 할 일?"
+        n "아무 키나 클릭하여 진행하세요"
+        
