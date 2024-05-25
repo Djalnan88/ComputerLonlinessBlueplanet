@@ -292,7 +292,7 @@ label cafe:
     python:
         while(True):
             input = renpy.input(">> ")
-            if "끝" in input or "홈" in input or "돌아" in input or "바탕화면" in input:
+            if "접속" in input or "들어" in input or "링크" in input or "가다" in input or "간다" in input:
                 moonsaying = "한번 접속해볼까"
                 break
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
