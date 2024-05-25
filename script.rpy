@@ -34,6 +34,7 @@ image alien_message_3_2 = "alien_message_3-2.png"
 image alien_message_3_3 = "alien_message_3-3.png"
 image alien_message_hack_bad1 = "alien_message_1-4.png"
 image alien_message_hack_bad2 = "alien_message_1-5badend.png"
+image alien_message_oldfriend0 = "alien_message_1-3-1.png"
 image alein_message_oldfriend1 = "alien_message_1-3-2.png"
 image alein_message_oldfriend2 = "alien_message_1-3-3-3.png"
 image alein_message_oldfriend3 = "alien_message-1-3-3-4.png"
@@ -292,7 +293,7 @@ label cafe:
     python:
         while(True):
             input = renpy.input(">> ")
-            if "접속" in input or "들어" in input or "링크" in input or "가다" in input or "간다" in input:
+            if "접속" in input or "들어" in input or "돌아" in input or "바탕화면" in input:
                 moonsaying = "한번 접속해볼까"
                 break
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
@@ -399,11 +400,11 @@ label chat:
             hearchoice = 0
             while(True):
                 input = renpy.input(">> ")
-                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣" in input or "들" in input:
                     moonsaying = "한번 들어보자"
                     hearchoice = 1
                     break
-                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들어본다" in input or "안들어보자" in input or "안들어보겠" in input or "듣지":
+                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들" in input or "듣지" in input:
                     moonsaying = "난 듣기 싫은데"
                     hearchoice = 2
                     break
@@ -418,10 +419,16 @@ label chat:
             $ moonsaying = "오랜 친구라\n어릴 적 친구가 생각나네"
             n "아무 키나 클릭하여 진행하세요"
             hide alien_massage_2_3
-            show alein_message_oldfriend1:
+            show alien_message_oldfriend0:
                 xpos 55
                 ypos 30
             $ moonsaying = "나도 그런 친구가 있었지"
+            n "아무 키나 클릭하여 진행하세요"
+            hide alien_message_oldfriend0
+            show alein_message_oldfriend1:
+                xpos 55
+                ypos 30
+            $ moonsaying = "갑자기 나를 떠나버린 그녀석..."
             n "아무 키나 클릭하여 진행하세요"
             hide alein_message_oldfriend1
             show alein_message_oldfriend2:
@@ -479,11 +486,11 @@ label chat:
             hearchoice = 0
             while(True):
                 input = renpy.input(">> ")
-                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣는다" in input or "들어본다" in input or "들어보자" in input:
+                if "네" in input or "응" in input or "그래" in input or "그렇" in input or "그럴" in input or "알겠" in input or "ㅇ" in input or "듣" in input or "들" in input:
                     moonsaying = "한번 들어보자"
                     hearchoice = 1
                     break
-                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들어본다" in input or "안들어보자" in input or "안들어보겠" in input or "듣지":
+                elif "아니" in input or "안" in input or "않" in input or "싫" in input or "안해" in input or "ㄴ" in input or "안듣는다" in input or "안들"  in input or "듣지" in input:
                     moonsaying = "난 듣기 싫은데"
                     hearchoice = 2
                     break
