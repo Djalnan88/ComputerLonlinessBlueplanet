@@ -210,6 +210,8 @@ label news:
                 moonsaying = "별 내용이 없네"
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
+            elif "돌아" in input or "뒤로" in input or "홈" in input or "나" in input:
+                moonsaying = "댓글이 신경쓰이는걸"
             else:
                 moonsaying = "그렇게는 못해"
     # 검색 화면 추가
@@ -223,16 +225,13 @@ label news:
             if "빅상민" in input:
                 moonsaying = "이 사람은 뭐지?"
                 break
-            if "돌아" in input or "뒤로" in input or "홈" in input "나" in input:
+            if "돌아" in input or "뒤로" in input or "홈" in input or "나" in input:
+                moonsaying = "카페가 신경쓰이는걸"
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
     hide search_one
-    show neine:
-        xpos 55
-        ypos 30
-    n "기사를 나가자 곧 또다른 화면이 보입니다."
     jump cafe
     return
 
@@ -350,7 +349,7 @@ label chat:
         chatchoice = 0
         while(True):
             input = renpy.input(">> ")
-            if "누가" in input or "누군" in input or "알려" in input or "빅상민" in input "canyouhearmefellas" in input:
+            if "누가" in input or "누군" in input or "알려" in input or "빅상민" in input or "canyouhearmefellas" in input:
                 moonsaying = "사실대로 말하자"
                 chatchoice = 1
                 break
@@ -709,7 +708,7 @@ label destroyed:
     scene marsattack
 
     n "창문을 열어보니 하늘을 뒤덮은 UFO와 폐허가 된 도시가 보입니다."
-    n "외계인들의 침공으로 인류는 멸망했습니다."
+    n "창문을 열어보니 하늘을 뒤덮은 UFO와 폐허가 된 도시가 보입니다.\n외계인들의 침공으로 인류는 멸망했습니다."
     n "BAD END \n드디어 방 밖으로"
     return
 
@@ -732,6 +731,7 @@ label kidnap:
             hide basic
             scene pizzaguy
             n "\"ㅎㅇ?\""
+            
         "문을 열지 않는다." :
             $ moonsaying = "난 파인애플 피자를 \n시켰는데..?"
             n "아무 키나 클릭하여 진행하세요"
@@ -744,8 +744,8 @@ label kidnap:
             scene kidnap
             n "*와장창*"
 
-        n "당신은 랩틸리언에게 납치당했습니다."
-        n "그 뒤로 당신의 모습을 본 사람은 아무도 없었습니다."
-        n "BAD END \n영원히 방 안에"
+    n "당신은 랩틸리언에게 납치당했습니다."
+    n "당신은 랩틸리언에게 납치당했습니다.\n그 뒤로 당신의 모습을 본 사람은 아무도 없었습니다."
+    n "BAD END \n영원히 방 안에"
             
     return
