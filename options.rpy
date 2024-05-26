@@ -139,7 +139,7 @@ default preferences.afm_time = 15
 ## 이것은 일반적으로 변경해서는 안 되며, 항상 표현형식이 아닌 정확한 문자열이어
 ## 야 합니다.
 
-define config.save_directory = "YakDecalture-1716562979"
+define config.save_directory = "CPU_Lonliness_BluePlanet-1716562979"
 
 
 ## Icon ########################################################################

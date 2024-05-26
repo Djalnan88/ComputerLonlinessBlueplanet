@@ -58,6 +58,7 @@ image moon = "character.png"
 image babysui = "babysui.png"
 image sui = "sui.png"
 image pizzadeliver = "realpizzadeliver.png"
+image black = "black.png"
 
 define n = Character(color = "#FFFFFF")
 define moon = Character(name = "당신", color = "#00FF00")
@@ -70,13 +71,9 @@ define babyalien = Character(name = "??", color = "#A374DB", image = "babysui.pn
 
 init:
     $ moonsaying = ""
-    $ presaying = ""
 
 screen mainsaying:
     text "[moonsaying]" xpos 950 ypos 370 size 18
-
-screen sayinglog:
-    text "[presaying]" xpos 100 ypos 570 size 22
 
 # Start the game
 label start:
@@ -97,7 +94,6 @@ label tutorial:
     show saying:
         xpos 930
         ypos 330
-    show screen sayinglog
     show screen mainsaying
     n "당신은 어두운 방에서 눈을 떴습니다."
     n "침대 옆의 열린 창문으로 적당히 시원한 공기와 함께 푸른 밤하늘이 눈에 들어옵니다. "
@@ -128,15 +124,16 @@ label tutorial:
             if "피자" in input and "전화" in input:
                 moonsaying = "포톤피자죠?"
                 break
+            elif "피자" in input and ("주문" in input or "시키" in input or "시킨" in input):
+                moonsaying = "먼저 전화를 해야해"
             elif "마운틴듀" in input and ("마신" in input or "마시" in input or "먹" in input):
                 moonsaying = "*꿀꺽*\n마운틴듀는 최고야"
             else:
                 moonsaying = "그렇게는 못해"
     n "\"네, 포톤피자입니다. 무엇을 도와드릴까요?\""
-    $ presaying = "\"네, 포톤피자입니다. 무엇을 도와드릴까요?\""
     python :
         while(True):
-            input = renpy.input("\n>> ")
+            input = renpy.input(">> ")
             if "주" in input and "피자" in input:
                 moonsaying = "파인애플 피자가 좋겠어"
                 presaying = ""
@@ -606,7 +603,7 @@ label secretagent:
     python:
         while(True):
             input = renpy.input(">> ")
-            if "읽" in input or "보" in input or "본" in input or "확인" in input:
+            if "읽" in input or "보" in input or "본" in input or "확인" in input or "디스코드" in input or "디코" in input or "메세지" in input or "메시지" in input:
                 moonsaying = "누구지?"
                 break
             elif ("전원" in input or "컴퓨터" in input) and ("끄" in input or "끈" in input or "꺼" in input):
@@ -891,7 +888,7 @@ label stopfight:
     moon "혜성아, 나 기억났어."
     moon "너가 가버린 뒤로 난 방에만 틀어박혀있었지."
     moon "이젠 더이상 방 안에만 있지 않을거야."
-    moon "너가 내 날개야!"
+    moon "너가 내 날개다!"
     sui "대장님, 이 인간이 제가 말한 그 사람입니다."
     sui "말투가 인터넷 많이 한 사람처럼 다소 어색하고 피자배달부 말고는 얘기해본 적이 없는 사람처럼 목소리가 다소 갈라지긴 했지만!"
     sui "방금도 보셨다시피 저희의 전투를 말 한마디로 끝내지 않았습니까!"
@@ -923,18 +920,22 @@ label happyend:
     n "배달이 오래 걸려 미안하다고 연거푸 고개를 숙이네요."
     n "그래도 덕분에 파인애플 피자를 오랜 친구에게 소개시켜 줄 수 있게 되었습니다!"
     hide pizzadeliver
-    hide characterbox
-    hide character
-    hide saying
-    hide screen sayinglog
-    hide screen mainsaying
-    hide background
-    show sui with dissolve:
-        xpos 540
+    show sui:
+        xpos 355
         ypos 220
     n "혜성도 파인애플 피자가 마음에 드는 모양인지 오랜 시간 동안 노려보고 있습니다."
     n "저 독특한 손동작은 유누성인들이 매우 맛있을 때 하는 동작이 틀림 없습니다!"
+    hide characterbox
     hide character
+    hide saying
+    hide screen mainsaying
+    hide background
+    scene black
+    hide bgmain
+    hide sui
+    show sui with dissolve:
+        xpos 540
+        ypos 220
     show moon with dissolve:
         xpos 300
         ypos 220
@@ -968,9 +969,9 @@ label destroyed:
     hide characterbox
     hide character
     hide saying
-    hide screen sayinglog
     hide screen mainsaying
     hide background
+    hide bgmain
     scene marsattack
 
     n "창문을 열어보니 하늘을 뒤덮은 UFO와 폐허가 된 도시가 보입니다."
@@ -992,9 +993,9 @@ label kidnap:
             hide characterbox
             hide character
             hide saying
-            hide screen sayinglog
             hide screen mainsaying
             hide basic
+            hide bgmain
             scene pizzaguy
             raptilianagent "ㅎㅇ?"
             
@@ -1004,9 +1005,9 @@ label kidnap:
             hide characterbox
             hide character
             hide saying
-            hide screen sayinglog
             hide screen mainsaying
             hide basic
+            hide bgmain
             scene kidnap
             n "*와장창*"
 
@@ -1019,9 +1020,10 @@ label rip:
     hide characterbox
     hide character
     hide saying
-    hide screen sayinglog
     hide screen mainsaying
     hide basic
+    hide bgmain
+    scene black
     raptilianagent "야! 인간을 죽이면 어떡해!"
     raptilianagent "인간이 저렇게 나약할줄은 몰랐지!"
     raptilianagent "초광자머신건 다섯 발 정도 맞았다고 죽을건 뭐야?"
