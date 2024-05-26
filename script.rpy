@@ -823,6 +823,7 @@ label meetalien:
 
 label past:
     # 과거회상 시작
+    hide UFOinside with dissolve
     show pastremember with dissolve:
         xpos 55
         ypos 30
@@ -847,7 +848,9 @@ label past:
     $ moonsaying = "몰라! \n너 미워!"
     babyalien "잠깐! 기다려!"
     hide pastremember with dissolve
-    #과거회상 끝
+    show UFOinside with dissolve:
+        xpos 55
+        ypos 30
     hide babysui
     hide babymoon
     show character:
@@ -890,7 +893,6 @@ label past:
 
 label stopfight:
     
-    # 우주선 내부 사진 추가
     $ moonsaying = "멈춰!"
     n "순식간에 주변이 조용해졌습니다."
     $ moonsaying = ""
@@ -946,6 +948,7 @@ label happyend:
     hide saying
     hide screen mainsaying
     hide background
+    hide UFOinside
     scene ending
     hide bgmain
     hide sui
