@@ -5,6 +5,7 @@ image basic = "basic.png"
 image characterbox = "characterbox.png"
 image saying = "saying.png"
 image background = "background.png"
+image background_vpn_on = "background_vpn_on.png"
 image neine = "neine.png"
 image aliennews = "aliennews.png"
 image news_comment = "news_comments.png"
@@ -59,6 +60,7 @@ image babysui = "babysui.png"
 image sui = "sui.png"
 image pizzadeliver = "realpizzadeliver.png"
 image black = "black.png"
+image ending = "ending.png"
 
 define n = Character(color = "#FFFFFF")
 define moon = Character(name = "당신", color = "#00FF00")
@@ -677,7 +679,10 @@ label secretagent:
         hide background
         jump kidnap
         return
-    # vpn 화면 추가
+    hide background
+    show background_vpn_on:
+        xpos 55
+        ypos 30
     n "당신은 vpn을 켰다. 왠지 안전해진 기분이 든다"
     $ moonsaying = "슬슬 10분이..."
     n "*쿠웅*"
@@ -697,7 +702,7 @@ label secretagent:
     return
 
 label meetalien:
-    hide background
+    hide background_vpn_on
     show basic:
         xpos 55
         ypos 30
@@ -930,18 +935,18 @@ label happyend:
     hide saying
     hide screen mainsaying
     hide background
-    scene black
+    scene ending
     hide bgmain
     hide sui
     show sui with dissolve:
         xpos 540
-        ypos 220
+        ypos 20
     show moon with dissolve:
-        xpos 300
-        ypos 220
+        xpos 280
+        ypos 20
     show raptilianagent with dissolve:
-        xpos 780
-        ypos 220
+        xpos 800
+        ypos 20
     n "지구는 곧 세 종족, 아니, 더 많은 종족들이 함께 살아가는 새로운 세상이 될 것입니다."
     n "서로를 이해하는 데에 꽤 오랜 시간이 걸리겠지만"
     n "결국 우리는 서로를 사랑하게 될 것입니다!"
