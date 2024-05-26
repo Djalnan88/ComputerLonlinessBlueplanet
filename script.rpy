@@ -99,7 +99,6 @@ label tutorial:
         xpos 930
         ypos 330
     show screen mainsaying
-    jump meetalien
     n "당신은 어두운 방에서 눈을 떴습니다."
     n "침대 옆의 열린 창문으로 적당히 시원한 공기와 함께 푸른 밤하늘이 눈에 들어옵니다. "
     n "눈 앞에는 잡동사니가 잔뜩 쌓인 책상과 은은하게 푸른 빛을 내는 컴퓨터 화면이 보입니다. "
