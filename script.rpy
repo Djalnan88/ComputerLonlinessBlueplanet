@@ -63,6 +63,7 @@ image black = "black.png"
 image ending = "ending.png"
 image pastremember = "pastremember.png"
 image UFOinside = "UFOinside.png"
+image kidnap = "kidnap.png"
 
 define n = Character(color = "#FFFFFF")
 define moon = Character(name = "당신", color = "#00FF00")
