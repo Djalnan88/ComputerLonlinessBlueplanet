@@ -61,6 +61,8 @@ image sui = "sui.png"
 image pizzadeliver = "realpizzadeliver.png"
 image black = "black.png"
 image ending = "ending.png"
+image pastremember = "pastremember.png"
+image UFOinside = "UFOinside.png"
 
 define n = Character(color = "#FFFFFF")
 define moon = Character(name = "당신", color = "#00FF00")
@@ -97,6 +99,7 @@ label tutorial:
         xpos 930
         ypos 330
     show screen mainsaying
+    jump meetalien
     n "당신은 어두운 방에서 눈을 떴습니다."
     n "침대 옆의 열린 창문으로 적당히 시원한 공기와 함께 푸른 밤하늘이 눈에 들어옵니다. "
     n "눈 앞에는 잡동사니가 잔뜩 쌓인 책상과 은은하게 푸른 빛을 내는 컴퓨터 화면이 보입니다. "
@@ -227,7 +230,7 @@ label news:
                 moonsaying = "댓글이 신경쓰이는걸"
             else:
                 moonsaying = "그렇게는 못해"
-    # 검색 화면 추가
+    
     hide news_comment
     show search_one:
         xpos 55
@@ -662,7 +665,7 @@ label secretagent:
         kdn = 0
         while(True):
             input = renpy.input(">> ")
-            if count >= 5:
+            if count > 4:
                 kdn = 1
                 break
             if ("vpn" in input or "VPN" in input or "프록시" in input or "구름" in input) and ("사용" in input or "켜" in input or "키" in input or "켠" in input or "킨" in input):
@@ -729,7 +732,13 @@ label meetalien:
         n "당신은 외계인을 따라 UFO에 탑승합니다."
     
     hide background
-    # 우주선 내부 추가
+    show UFOinside:
+        xpos 55
+        ypos 30
+    hide sui
+    show sui:
+        xpos 355
+        ypos 220
     $ moonsaying = "내부는 이렇게 생겼구나"
     alien "도와줘서 고마워."
     $ moonsaying = "사람?"
@@ -814,7 +823,9 @@ label meetalien:
 
 label past:
     # 과거회상 시작
-    # 과거 사진 추가
+    show pastremember with dissolve:
+        xpos 55
+        ypos 30
     hide alienboss
     hide sui
     hide raptilianagent
@@ -828,14 +839,14 @@ label past:
     $ moonsaying = "왜 그래? \n오늘따라 말이 없네"
     babyalien "..."
     $ moonsaying = "뭐...라고...!?"
-    babyalien "나 고향으로 돌아가야 한대..."
+    babyalien "나... 고향으로 돌아가야 한대..."
     $ moonsaying = "무슨 소리야?"
     babyalien "내가 보고싶으면 하늘에서 가장 밝은 별인 유누성을 찾아줘."
     $ moonsaying = "그럼 평생 \n못보는거잖아!"
     babyalien "나도 너가 생각날 때마다 지구를 바라볼게."
     $ moonsaying = "몰라! \n너 미워!"
     babyalien "잠깐! 기다려!"
-
+    hide pastremember with dissolve
     #과거회상 끝
     hide babysui
     hide babymoon
@@ -861,7 +872,7 @@ label past:
         count = 0
         kdn = 0
         while(True):
-            if count > 5:
+            if count > 4:
                 kdn = 1
                 break
             input = renpy.input(">> ")
@@ -950,7 +961,6 @@ label happyend:
     n "지구는 곧 세 종족, 아니, 더 많은 종족들이 함께 살아가는 새로운 세상이 될 것입니다."
     n "서로를 이해하는 데에 꽤 오랜 시간이 걸리겠지만"
     n "결국 우리는 서로를 사랑하게 될 것입니다!"
-    # 엔딩 사진 추가
     n "HAPPY END \n다 함께 방 안으로"
     return
 
